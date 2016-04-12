@@ -38,10 +38,21 @@ end
 
 users = User.order(:created_at).take(6)
 50.times do
-  title = Faker::Lorem.sentence(5)
+  title = Faker::Lorem.sentence(5).first(50)
   body = Faker::Lorem.sentence(5)
-  users.each { |user| user.entries.create!(title: title, body: body) }
+  users.each do |user|
+    entry = user.entries.create!(title: title, body: body)
+  end
 end
+
+entries = Entry.order(:created_at).take(50)
+entries.each do |entry|
+  rand(0..5).times do
+    content = Faker::Lorem.sentence(5).first(140)
+    entry.comments.create!(content: content)
+  end
+end
+    
 
 # Following relationships
 users = User.all

@@ -4,6 +4,10 @@ class EntriesController < ApplicationController
   
   def show
     @entry = Entry.find(params[:id])
+    @comments = @entry.comments.paginate(page: params[:page])
+    if logged_in?
+      @new_comment = current_user.comments.build
+    end
   end
 
   def create

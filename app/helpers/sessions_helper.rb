@@ -59,4 +59,12 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.url if request.get?
   end
+  
+  def can_comment?(entry)
+		entry.user == current_user || current_user.following?(entry.user)
+	end
+
+	def can_delete_comment?(comment)
+		comment.user == current_user || comment.entry.user == current_user
+	end
 end

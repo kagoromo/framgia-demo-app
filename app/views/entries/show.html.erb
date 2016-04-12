@@ -1,6 +1,6 @@
 <% provide(:title, @entry.title) %>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-10 col-md-offset-1">
     <ol class="entries">
       <li id="entry-<%= @entry.id %>">
         <%= link_to gravatar_for(@entry.user, size: 50), @entry.user %>
@@ -16,5 +16,19 @@
         </span>
       </li>
     </ol>
+  </div>
+  
+  <div class="col-md-10 col-md-offset-1">
+    <h3>Comments (<%= @entry.comments.count %>)</h3>
+    <div class="row">
+    	<div class="col-md-12">
+    		<ol class="entries">
+    		  <%= render @comments %>
+    		</ol>
+    		<% if logged_in? && (can_comment? @entry) %>
+    			<%= render 'shared/comment_form', entry: @entry, comment: @new_comment %>
+    		<% end %>
+    	</div>
+    </div>
   </div>
 </div>
