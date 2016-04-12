@@ -22,5 +22,8 @@ module FramgiaDemoApp
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    
+    # Default Mailer Host
+    Rails.application.routes.default_url_options[:host] = 'domain.com'
   end
 end
