@@ -4,17 +4,19 @@ class CommentsController < ApplicationController
     @comment = @entry.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      flash[:success] = "Comment created"
+      flash[:success] = "Comment created!"
       redirect_to @entry
     else
-      render 'static_pages/home'
+      @feed_items = []
+      flash[:danger] = "Failed to save comment"
+      redirect_to @entry
     end
   end
 
   def destroy
     @entry = Entry.find(params[:entry_id])
     @comment = Comment.find(params[:id]).destroy
-    flash[:success] = "Comment deleted"
+    flash[:success] = "Comment deleted!"
     redirect_to @entry
   end
 
