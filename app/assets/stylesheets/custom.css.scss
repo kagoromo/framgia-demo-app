@@ -163,6 +163,9 @@ input {
   height: auto !important;
 }
 
+#entry_title {
+  height: 50% !important;
+}
 #error_explanation {
   color: red;
   ul {
@@ -204,9 +207,9 @@ input {
   }
 }
 
-/* microposts */
+/* entries */
 
-.microposts {
+.entries {
   list-style: none;
   padding: 0;
   li {
@@ -217,7 +220,17 @@ input {
     margin-top: 5em;
     padding-top: 0;
   }
-  .content {
+  .title {
+    display: block;
+    margin-left: 60px;
+    font-size: 1.5em;
+    font-weight: normal;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .body {
     display: block;
     margin-left: 60px;
     img {
@@ -229,6 +242,7 @@ input {
     color: $gray-light;
     display: block;
     margin-left: 60px;
+    font-size: 0.9em;
   }
   .gravatar {
     float: left;
