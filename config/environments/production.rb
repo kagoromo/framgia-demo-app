@@ -62,16 +62,18 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  # Default Mailer Host
+  config.action_mailer.default_url_options = { :host => 'myapp.herokuapp.com' }  
+  config.action_mailer.delivery_method = :smtp  
+  config.action_mailer.perform_deliveries = true  
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  host = 'framgia-demo-app-kagoromo.c9users.io'
-  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.default :charset => "utf-8"  
   config.action_mailer.smtp_settings = {
     :address              => 'smtp.gmail.com',
     :port                 => 587,
-    :domain               => 'mail.google.com',
-    :user_name            => 'kagoromo@gmail.com',
-    :password             => 'Zeratul5694',
+    :domain               => 'myapp.herokuapp.com',
+    :user_name:           => ENV["GMAIL_USERNAME"],
+    :password:            => ENV["GMAIL_PASSWORD"],
     :authentication       => 'plain',
     :enable_starttls_auto => true  
   }
