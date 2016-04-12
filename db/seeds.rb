@@ -45,15 +45,6 @@ users = User.order(:created_at).take(6)
   end
 end
 
-entries = Entry.order(:created_at).take(50)
-entries.each do |entry|
-  rand(0..5).times do
-    content = Faker::Lorem.sentence(5).first(140)
-    entry.comments.create!(content: content)
-  end
-end
-    
-
 # Following relationships
 users = User.all
 user  = users.first
